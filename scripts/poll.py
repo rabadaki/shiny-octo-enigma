@@ -99,7 +99,16 @@ def fetch_json(url, params=None):
 
 def _dump_root() -> str:
     # Railway volume should mount at /data; prefer env override
-    return os.environ.get("XTRACKER_DUMP_ROOT") or os.path.join(
+    raw = os.environ.get("XTRACKER_DUMP_ROOT")
+    if raw is not None:
+        raw = raw.strip()
+        # common misconfig: user pastes "XTRACKER_DUMP_ROOT=/data/xtracker_dump" into the VALUE field
+        if raw.startswith("XTRACKER_DUMP_ROOT="):
+            raw = raw.split("=", 1)[1].strip()
+        if raw:
+            return raw
+
+    return os.path.join(
         os.path.dirname(os.path.dirname(__file__)), "data", "xtracker_dump"
     )
 
