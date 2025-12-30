@@ -1,0 +1,8 @@
+[build]
+builder = "nixpacks"
+
+[phases.install]
+cmds = ["pip install -r requirements.txt"]
+
+[deploy]
+startCommand = "/app/.venv/bin/python3 /app/scripts/poll.py --listen --loop"

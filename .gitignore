@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.DS_Store
+.env
+
+# dumps/artifacts (never commit)
+data/xtracker_dump/
+data/xtracker_dump/**/*
+artifacts/
+artifacts/**/*
+
+# keep repo deploy-only
+backend/
+backend/**/*
